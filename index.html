@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>香港文化之旅 | Hong Kong Culture</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@300;400;500;700;900&family=Noto+Serif+HK:wght@400;600;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --neon-red: #ff2d55;
+    --neon-blue: #00d4ff;
+    --neon-green: #39ff14;
+    --neon-yellow: #ffe600;
+    --neon-pink: #ff6ec7;
+    --cc-green: #5b8c5a;
+    --cc-pink: #e8a0bf;
+    --dark-bg: #1a1a2e;
+    --card-bg: #16213e;
+    --text: #e0e0e0;
+    --text-muted: #a0a0b0;
+    --gold: #d4a843;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans HK', 'Microsoft JhengHei', sans-serif;
+    background: var(--dark-bg);
+    color: var(--text);
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* ── Background Pattern ── */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(255,45,85,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(0,212,255,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(57,255,20,0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Header / Navigation ── */
+  header {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    background: rgba(22,33,62,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--neon-red);
+    z-index: 1000;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .logo {
+    font-family: 'Noto Serif HK', serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--neon-red);
+    text-shadow: 0 0 10px rgba(255,45,85,0.5), 0 0 20px rgba(255,45,85,0.3);
+    letter-spacing: 2px;
+  }
+  .logo span { color: var(--neon-blue); }
+
+  nav { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: flex-end; }
+  nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+  nav a:hover, nav a.active {
+    color: var(--neon-yellow);
+    text-shadow: 0 0 8px rgba(255,230,0,0.5);
+  }
+
+  /* ── Hero Section ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    padding: 6rem 2rem 4rem;
+    background:
+      linear-gradient(180deg, rgba(26,26,46,0.6) 0%, rgba(26,26,46,0.9) 100%),
+      url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%231a1a2e" width="1200" height="600"/><rect x="50" y="100" width="40" height="400" fill="%23222"/><rect x="110" y="150" width="30" height="350" fill="%23222"/><rect x="160" y="80" width="45" height="420" fill="%23222"/><rect x="220" y="200" width="25" height="300" fill="%23222"/><rect x="260" y="50" width="50" height="450" fill="%23222"/><rect x="330" y="180" width="35" height="320" fill="%23222"/><rect x="380" y="120" width="60" height="380" fill="%23222"/><rect x="460" y="90" width="30" height="410" fill="%23222"/><rect x="510" y="160" width="55" height="340" fill="%23222"/><rect x="580" y="60" width="40" height="440" fill="%23222"/><rect x="640" y="140" width="35" height="360" fill="%23222"/><rect x="690" y="200" width="50" height="300" fill="%23222"/><rect x="760" y="100" width="45" height="400" fill="%23222"/><rect x="820" y="170" width="30" height="330" fill="%23222"/><rect x="870" y="80" width="60" height="420" fill="%23222"/><rect x="950" y="130" width="40" height="370" fill="%23222"/><rect x="1010" y="190" width="35" height="310" fill="%23222"/><rect x="1060" y="70" width="50" height="430" fill="%23222"/></svg>');
+    background-size: cover;
+    background-position: center bottom;
+  }
+
+  .hero h1 {
+    font-family: 'Noto Serif HK', serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--neon-red), var(--neon-yellow), var(--neon-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    animation: titleGlow 3s ease-in-out infinite alternate;
+  }
+  @keyframes titleGlow {
+    0% { filter: drop-shadow(0 0 8px rgba(255,45,85,0.3)); }
+    100% { filter: drop-shadow(0 0 20px rgba(0,212,255,0.5)); }
+  }
+
+  .hero .subtitle {
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+  .hero .motto {
+    font-size: 1.1rem;
+    color: var(--neon-pink);
+    text-shadow: 0 0 6px rgba(255,110,199,0.4);
+    margin-bottom: 2rem;
+  }
+
+  .hero .bauhinia {
+    width: 80px; height: 80px;
+    animation: rotate 20s linear infinite;
+    opacity: 0.7;
+    margin-bottom: 1.5rem;
+  }
+  @keyframes rotate { to { transform: rotate(360deg); } }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    animation: bounce 2s infinite;
+    color: var(--neon-yellow);
+    font-size: 2rem;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(15px); }
+  }
+
+  /* ── Section Common ── */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .section-title h2 {
+    font-family: 'Noto Serif HK', serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 900;
+    color: var(--neon-yellow);
+    text-shadow: 0 0 10px rgba(255,230,0,0.3);
+    margin-bottom: 0.5rem;
+  }
+  .section-title .en {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .section-title .divider {
+    width: 80px; height: 3px;
+    background: var(--neon-red);
+    margin: 1rem auto 0;
+    box-shadow: 0 0 10px rgba(255,45,85,0.6);
+  }
+
+  /* ── Overview Stats ── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+  .stat-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--neon-red), var(--neon-blue));
+  }
+  .stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,212,255,0.1);
+  }
+  .stat-card .number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--neon-red), var(--neon-yellow));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stat-card .label { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem; }
+
+  /* ── Grid Cards ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    border-color: var(--neon-red);
+  }
+  .card-img {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    position: relative;
+  }
+  .card-body { padding: 1.5rem; }
+  .card-body h3 {
+    font-family: 'Noto Serif HK', serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--neon-yellow);
+  }
+  .card-body p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+
+  /* ── Food Section ── */
+  #food .card:nth-child(1) .card-img { background: linear-gradient(135deg, #8B4513, #D2691E); }
+  #food .card:nth-child(2) .card-img { background: linear-gradient(135deg, #C9A96E, #F5DEB3); }
+  #food .card:nth-child(3) .card-img { background: linear-gradient(135deg, #5C4033, #8B7355); }
+  #food .card:nth-child(4) .card-img { background: linear-gradient(135deg, #D4A017, #FFD700); }
+  #food .card:nth-child(5) .card-img { background: linear-gradient(135deg, #2F4F4F, #8FBC8F); }
+  #food .card:nth-child(6) .card-img { background: linear-gradient(135deg, #800020, #DC143C); }
+
+  /* ── Festivals ── */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--neon-red), var(--neon-blue), var(--neon-green));
+    box-shadow: 0 0 10px rgba(255,45,85,0.4);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding-left: 2rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem 1.5rem 1.5rem 2.5rem;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: calc(-2rem - 6px);
+    top: 1.5rem;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--neon-red);
+    box-shadow: 0 0 10px rgba(255,45,85,0.8);
+  }
+  .timeline-item h3 {
+    font-family: 'Noto Serif HK', serif;
+    color: var(--neon-yellow);
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+  }
+  .timeline-item .date {
+    font-size: 0.8rem;
+    color: var(--neon-pink);
+    margin-bottom: 0.5rem;
+  }
+  .timeline-item p { color: var(--text-muted); font-size: 0.9rem; }
+
+  /* ── Landmarks ── */
+  .landmark-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  .landmark {
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .landmark:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  }
+  .landmark-header {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+  }
+  .landmark-body { padding: 1.2rem; }
+  .landmark-body h4 {
+    font-family: 'Noto Serif HK', serif;
+    color: var(--neon-yellow);
+    margin-bottom: 0.3rem;
+  }
+  .landmark-body .loc { font-size: 0.8rem; color: var(--neon-blue); margin-bottom: 0.4rem; }
+  .landmark-body p { font-size: 0.85rem; color: var(--text-muted); }
+
+  /* ── Arts & Culture ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  .two-col.reverse { direction: rtl; }
+  .two-col.reverse > * { direction: ltr; }
+  .culture-text h3 {
+    font-family: 'Noto Serif HK', serif;
+    font-size: 1.5rem;
+    color: var(--neon-yellow);
+    margin-bottom: 1rem;
+  }
+  .culture-text p { color: var(--text-muted); margin-bottom: 1rem; }
+  .culture-visual {
+    height: 300px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* ── Neon Quote ── */
+  .neon-quote {
+    text-align: center;
+    padding: 4rem 2rem;
+    margin: 2rem 0;
+    border-top: 2px solid rgba(255,45,85,0.3);
+    border-bottom: 2px solid rgba(255,45,85,0.3);
+  }
+  .neon-quote blockquote {
+    font-family: 'Noto Serif HK', serif;
+    font-size: 1.5rem;
+    color: var(--neon-pink);
+    text-shadow: 0 0 15px rgba(255,110,199,0.5);
+    margin-bottom: 1rem;
+  }
+  .neon-quote cite {
+    color: var(--text-muted);
+    font-style: normal;
+  }
+
+  /* ── Nature ── */
+  .nature-banner {
+    background: linear-gradient(135deg, rgba(57,255,20,0.1), rgba(0,212,255,0.1));
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    text-align: center;
+    border: 1px solid rgba(57,255,20,0.2);
+    margin-top: 2rem;
+  }
+  .nature-banner .big-stat {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--neon-green);
+    text-shadow: 0 0 20px rgba(57,255,20,0.4);
+  }
+  .nature-banner p { color: var(--text-muted); margin-top: 0.5rem; font-size: 1.1rem; }
+
+  /* ── Footer ── */
+  footer {
+    background: rgba(0,0,0,0.3);
+    border-top: 3px solid var(--neon-red);
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  footer .bauhinia-small {
+    width: 50px; height: 50px;
+    margin-bottom: 1rem;
+    opacity: 0.6;
+  }
+  footer p { color: var(--text-muted); font-size: 0.85rem; }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      height: auto;
+      padding: 0.8rem 1rem;
+    }
+    nav { gap: 0.2rem; }
+    nav a { font-size: 0.75rem; padding: 0.3rem 0.5rem; }
+
+    .two-col { grid-template-columns: 1fr; }
+    .two-col.reverse { direction: ltr; }
+
+    section { padding: 3rem 1rem; }
+  }
+
+  /* ── Neon Flicker ── */
+  @keyframes neonFlicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+    20%, 24%, 55% { opacity: 0.7; }
+  }
+  .neon-flicker { animation: neonFlicker 3s infinite; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ HEADER ═══════════════════════ -->
+<header>
+  <div class="logo">香港<span>·</span>HK</div>
+  <nav>
+    <a href="#overview">概覽 Overview</a>
+    <a href="#food">美食 Food</a>
+    <a href="#festivals">節慶 Festivals</a>
+    <a href="#landmarks">地標 Landmarks</a>
+    <a href="#arts">文藝 Arts</a>
+    <a href="#nature">自然 Nature</a>
+  </nav>
+</header>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section class="hero">
+  <svg class="bauhinia" viewBox="0 0 100 100">
+    <g fill="#ff2d55" opacity="0.8">
+      <ellipse cx="50" cy="25" rx="8" ry="22" transform="rotate(0,50,50)"/>
+      <ellipse cx="50" cy="25" rx="8" ry="22" transform="rotate(72,50,50)"/>
+      <ellipse cx="50" cy="25" rx="8" ry="22" transform="rotate(144,50,50)"/>
+      <ellipse cx="50" cy="25" rx="8" ry="22" transform="rotate(216,50,50)"/>
+      <ellipse cx="50" cy="25" rx="8" ry="22" transform="rotate(288,50,50)"/>
+    </g>
+    <circle cx="50" cy="50" r="5" fill="#ffe600"/>
+  </svg>
+  <h1>香港文化之旅</h1>
+  <p class="subtitle">Hong Kong Cultural Journey</p>
+  <p class="motto">東西方交匯 · 傳統與現代融合 · 東方之珠</p>
+  <p style="color:var(--text-muted);max-width:600px;">
+    香港，一座充滿活力的國際大都會，擁有超過7,000座高樓大廈、15,000間餐廳，
+    以及獨一無二的「一國兩制」文化基因。這裡既是全球金融中心，也是嶺南文化的傳承之地。
+  </p>
+  <div class="scroll-indicator neon-flicker">▼</div>
+</section>
+
+<!-- ═══════════════════════ OVERVIEW ═══════════════════════ -->
+<section id="overview">
+  <div class="section-title">
+    <h2>香港概覽</h2>
+    <p class="en">Hong Kong at a Glance</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="number">7.5M+</div>
+      <div class="label">人口 Population</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">1,106</div>
+      <div class="label">平方公里 Area (km²)</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">263</div>
+      <div class="label">島嶼 Islands</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">15,000+</div>
+      <div class="label">餐廳 Restaurants</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">7,000+</div>
+      <div class="label">高樓大廈 Skyscrapers</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">70%</div>
+      <div class="label">綠化覆蓋 Green Space</div>
+    </div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#1a3a5c,#2c6faa);">🏙️</div>
+      <div class="card-body">
+        <h3>國際金融中心</h3>
+        <p>全球第三大金融中心，與紐約、倫敦並稱「紐倫港」。世界最自由的經濟體之一，連續25年被評為全球最自由經濟體。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#5c1a3a,#aa2c6f);">🗣️</div>
+      <div class="card-body">
+        <h3>兩文三語</h3>
+        <p>官方語言為中文和英文，口語通用粵語（廣東話）、普通話和英語。粵語保留了大量古漢語發音，是嶺南文化的重要載體。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#3a5c1a,#6faa2c);">🏛️</div>
+      <div class="card-body">
+        <h3>一國兩制</h3>
+        <p>1997年回歸中國，實行「一國兩制」，保持資本主義制度和生活方式50年不變。擁有獨立的司法體系、貨幣（港元）和出入境政策。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#5c4a1a,#aa8c2c);">🚃</div>
+      <div class="card-body">
+        <h3>高效交通</h3>
+        <p>全球最優質的公共交通系統之一，港鐵日均載客量超過500萬人次。擁有自1904年運行的叮叮電車，是世界最大雙層電車車隊。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FOOD ═══════════════════════ -->
+<section id="food">
+  <div class="section-title">
+    <h2>飲食文化</h2>
+    <p class="en">Culinary Culture</p>
+    <div class="divider"></div>
+  </div>
+
+  <p style="text-align:center;color:var(--text-muted);max-width:700px;margin:0 auto 3rem;">
+    香港被譽為「美食天堂」，從街頭小吃到米芝蓮星級餐廳，從大牌檔到茶餐廳，
+    每一口都是東西方飲食文化的結晶。全港共有超過76間米芝蓮星級餐廳。
+  </p>
+
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-img">🥟</div>
+      <div class="card-body">
+        <h3>點心 Dim Sum</h3>
+        <p>蝦餃、燒賣、叉燒包、腸粉——「飲茶」是香港人日常生活中不可或缺的社交儀式。一盅兩件，嘆茶看報，體現港式生活美學。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">🥚</div>
+      <div class="card-body">
+        <h3>蛋撻 Egg Tart</h3>
+        <p>源自英式custard tart，經本地化改良。酥皮或牛油皮外殼包裹嫩滑蛋漿，新鮮出爐時香氣四溢，是港式餅店的靈魂產品。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">☕</div>
+      <div class="card-body">
+        <h3>絲襪奶茶 Milk Tea</h3>
+        <p>又稱「港式奶茶」或「絲襪奶茶」，以多種茶葉混合調配，經絲襪般的布袋反覆沖泡，茶濃奶滑，入選香港非物質文化遺產。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">🍍</div>
+      <div class="card-body">
+        <h3>菠蘿包 Pineapple Bun</h3>
+        <p>表面酥皮呈網格狀似菠蘿而得名，實際上並不含菠蘿。夾上一塊冰凍牛油便是「菠蘿油」，是茶餐廳的經典美食。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">🧇</div>
+      <div class="card-body">
+        <h3>雞蛋仔 Egg Waffle</h3>
+        <p>蜂巢狀的街頭小食，外脆內軟，蛋香濃郁。從1950年代街頭小販車演變至今，已成為香港最具代表性的街頭小食之一。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">🍲</div>
+      <div class="card-body">
+        <h3>盆菜 Poon Choi</h3>
+        <p>新界圍村的傳統菜餚，將多種食材層層疊放在大盆中，由最上層的肉類到最底層吸收湯汁精華的蔬菜，象徵團圓與富足。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="nature-banner" style="margin-top:2rem;background:linear-gradient(135deg,rgba(255,45,85,0.1),rgba(255,230,0,0.1));border-color:rgba(255,45,85,0.2);">
+    <h3 style="color:var(--neon-yellow);margin-bottom:0.5rem;">🍽️ 茶餐廳文化 Cha Chaan Teng</h3>
+    <p style="color:var(--text-muted);max-width:700px;margin:0 auto;">
+      茶餐廳是香港獨有的飲食文化標誌，融合中西料理於一體。綠白相間的瓷磚、手寫餐牌、
+      紅色塑膠椅，構成獨一無二的港式美學空間。在這裡，你可以同時點到羅宋湯、乾炒牛河和凍檸茶。
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FESTIVALS ═══════════════════════ -->
+<section id="festivals">
+  <div class="section-title">
+    <h2>傳統節慶</h2>
+    <p class="en">Traditional Festivals</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <h3>農曆新年 Chinese New Year</h3>
+      <div class="date">農曆正月初一至十五 · Jan/Feb</div>
+      <p>全港最盛大的節日。維港花車巡遊匯演、初二煙花匯演、沙田馬場賀歲賽馬、林村許願樹拋寶牒——每個環節都洋溢著濃厚的節日氣氛。</p>
+    </div>
+    <div class="timeline-item">
+      <h3>天后誕 Tin Hau Festival</h3>
+      <div class="date">農曆三月廿三日 · Apr/May</div>
+      <p>香港漁民社區最重要的節日之一。各區天后廟舉辦巡遊、舞龍舞獅、神功戲和花炮會。西貢天后誕更有連續數日的粵劇表演和祭祀儀式。</p>
+    </div>
+    <div class="timeline-item">
+      <h3>長洲太平清醮 Cheung Chau Bun Festival</h3>
+      <div class="date">農曆四月初八 · May</div>
+      <p>國家級非物質文化遺產。飄色巡遊、搶包山比賽是最大亮點。節日期間全島食素三天，展現社區凝聚力與傳統信仰的延續。</p>
+    </div>
+    <div class="timeline-item">
+      <h3>大坑舞火龍 Tai Hang Fire Dragon Dance</h3>
+      <div class="date">農曆八月十四至十六 · Sep/Oct</div>
+      <p>國家級非物質文化遺產。一條長達67公尺、插滿線香的火龍在大坑狹窄街道上穿梭舞動，源自19世紀驅除瘟疫的傳說，至今已傳承逾百年。</p>
+    </div>
+    <div class="timeline-item">
+      <h3>中秋節 Mid-Autumn Festival</h3>
+      <div class="date">農曆八月十五日 · Sep/Oct</div>
+      <p>維園彩燈會、大澳水鄉花燈節、螢光棒和月餅是中秋標配。家人團聚賞月食月餅，小孩提燈籠走街串巷，充滿溫馨的節日氣息。</p>
+    </div>
+    <div class="timeline-item">
+      <h3>冬至 Winter Solstice</h3>
+      <div class="date">每年12月21-23日</div>
+      <p>「冬大過年」——香港人視冬至比農曆新年更重要。家家戶戶必定團聚食飯，公司提早下班，是香港最重要的家庭團聚日之一。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ LANDMARKS ═══════════════════════ -->
+<section id="landmarks">
+  <div class="section-title">
+    <h2>地標景點</h2>
+    <p class="en">Landmarks & Attractions</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="landmark-grid">
+    <div class="landmark">
+      <div class="landmark-header" style="background:linear-gradient(135deg,#1a3a5c,#2c6faa);">🌃</div>
+      <div class="landmark-body">
+        <h4>維多利亞港 Victoria Harbour</h4>
+        <div class="loc">📍 香港島與九龍之間</div>
+        <p>世界三大天然良港之一。每晚8時的「幻彩詠香江」匯演，46座摩天大樓共同演出，打破健力士世界紀錄。</p>
+      </div>
+    </div>
+    <div class="landmark">
+      <div class="landmark-header" style="background:linear-gradient(135deg,#2c5a2c,#4a9a4a);">⛰️</div>
+      <div class="landmark-body">
+        <h4>太平山頂 Victoria Peak</h4>
+        <div class="loc">📍 香港島 · 海拔552米</div>
+        <p>乘坐自1888年運行的山頂纜車登頂，俯瞰維港全景和九龍半島，是香港最受歡迎的旅遊景點。</p>
+      </div>
+    </div>
+    <div class="landmark">
+      <div class="landmark-header" style="background:linear-gradient(135deg,#5c3a1a,#aa7c2c);">🛕</div>
+      <div class="landmark-body">
+        <h4>天壇大佛 Tian Tan Buddha</h4>
+        <div class="loc">📍 大嶼山 · 高34米</div>
+        <p>全球最高的戶外青銅坐佛，重250噸。乘坐昂坪360纜車前往，沿途可欣賞大嶼山壯麗景色及香港國際機場全景。</p>
+      </div>
+    </div>
+    <div class="landmark">
+      <div class="landmark-header" style="background:linear-gradient(135deg,#4a1a4a,#8a3a8a);">🏮</div>
+      <div class="landmark-body">
+        <h4>黃大仙祠 Wong Tai Sin Temple</h4>
+        <div class="loc">📍 九龍 · 嗇色園</div>
+        <p>香港最著名的廟宇，以「有求必應」聞名。供奉黃大仙、觀音和孔子，儒釋道三教合一，每日香火鼎盛。</p>
+      </div>
+    </div>
+    <div class="landmark">
+      <div class="landmark-header" style="background:linear-gradient(135deg,#5c1a5c,#9a3a6a);">🎭</div>
+      <div class="landmark-body">
+        <h4>西九文化區 West Kowloon</h4>
+        <div class="loc">📍 九龍 · 西九龍海濱</div>
+        <p>全球最大規模的文化藝術項目之一。M+視覺文化博物館、香港故宮文化博物館、戲曲中心等構成了世界級文化藝術樞紐。</p>
+      </div>
+    </div>
+    <div class="landmark">
+      <div class="landmark-header" style="background:linear-gradient(135deg,#3a4a5c,#5a7a9a);">🚢</div>
+      <div class="landmark-body">
+        <h4>天星小輪 Star Ferry</h4>
+        <div class="loc">📍 中環 ↔ 尖沙咀</div>
+        <p>自1888年啟航，被國家地理雜誌評為「人生50個必到景點」之一。短短數分鐘的航程，是欣賞維港天際線的最佳方式。</p>
+      </div>
+    </div>
+    <div class="landmark">
+      <div class="landmark-header" style="background:linear-gradient(135deg,#5c4a1a,#aa8c2c);">🚋</div>
+      <div class="landmark-body">
+        <h4>叮叮電車 Ding Ding Tram</h4>
+        <div class="loc">📍 香港島北岸 · 全長13公里</div>
+        <p>1904年投入服務，是世界上最大且仍在運行的雙層有軌電車。清脆的「叮叮」聲是香港最具辨識度的城市聲音。</p>
+      </div>
+    </div>
+    <div class="landmark">
+      <div class="landmark-header" style="background:linear-gradient(135deg,#1a4a4a,#2a8a7a);">🏘️</div>
+      <div class="landmark-body">
+        <h4>彩虹邨 Choi Hung Estate</h4>
+        <div class="loc">📍 九龍 · 牛池灣</div>
+        <p>建於1962年的公共屋邨，外牆以彩虹七色粉飾，籃球場背景加上彩色大廈，成為社交媒體上最具標誌性的香港打卡點之一。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ ARTS ═══════════════════════ -->
+<section id="arts">
+  <div class="section-title">
+    <h2>文化藝術</h2>
+    <p class="en">Arts & Culture</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="two-col">
+    <div class="culture-text">
+      <h3>🎭 粵劇 Cantonese Opera</h3>
+      <p>2009年入選聯合國教科文組織人類非物質文化遺產代表作名錄。粵劇融合了唱、做、唸、打，以獨特的唱腔和華麗的戲服聞名。</p>
+      <p>西九文化區的戲曲中心是專門為傳統戲曲表演而建的世界級場地，建築設計靈感來自傳統燈籠，將現代建築與傳統藝術完美結合。</p>
+    </div>
+    <div class="culture-visual" style="background:linear-gradient(135deg,#8B0000,#DC143C);">🎭</div>
+  </div>
+
+  <div class="two-col reverse" style="margin-top:3rem;">
+    <div class="culture-text">
+      <h3>🎨 霓虹招牌藝術 Neon Sign Art</h3>
+      <p>1950至1980年代是香港霓虹燈的黃金時代。滿街的霓虹招牌——紅色、藍色、綠色、黃色——構成獨特的城市視覺景觀。北魏體書法與霓虹工藝的結合，造就了香港特有的文字美學。</p>
+      <p>M+博物館收藏了大量經典霓虹招牌，包括「森美餐廳」的安格斯牛招牌和「鷄記蔴雀館」等，將這門逐漸消失的工藝保存。</p>
+    </div>
+    <div class="culture-visual" style="background:linear-gradient(135deg,#1a0040,#4a00a0);">💡</div>
+  </div>
+
+  <div class="two-col" style="margin-top:3rem;">
+    <div class="culture-text">
+      <h3>🏛️ 博物館與畫廊 Museums</h3>
+      <p>香港擁有超過50間博物館，M+視覺文化博物館是亞洲首個全球性當代視覺文化博物館，藏品涵蓋設計、建築、流動影像和視覺藝術。</p>
+      <p>香港故宮文化博物館展出超過900件來自北京故宮博物院的珍貴文物。此外，Art Basel Hong Kong和Art Central每年吸引全球頂尖畫廊和收藏家。</p>
+    </div>
+    <div class="culture-visual" style="background:linear-gradient(135deg,#3a1a2a,#7a3a5a);">🏛️</div>
+  </div>
+
+  <div class="two-col reverse" style="margin-top:3rem;">
+    <div class="culture-text">
+      <h3>🎬 電影文化 Film Culture</h3>
+      <p>香港是全球第三大電影工業基地，僅次於美國和印度。李小龍、成龍、王家衛、周星馳——從功夫片到藝術電影，香港電影在國際影壇享有崇高地位。</p>
+      <p>星光大道上的巨星手印和李小龍銅像，記錄了香港電影的黃金時代。香港國際電影節（HKIFF）是亞洲最重要的電影盛事之一。</p>
+    </div>
+    <div class="culture-visual" style="background:linear-gradient(135deg,#2a1a3a,#6a3a7a);">🎬</div>
+  </div>
+
+  <div class="neon-quote">
+    <blockquote>"香港的霓虹燈不只是廣告，它是這座城市的精神象徵——在黑夜中依然閃耀，宣告著生命力與創造力。"</blockquote>
+    <cite>—— M+博物館霓虹展覽策展詞</cite>
+  </div>
+</section>
+
+<!-- ═══════════════════════ NATURE ═══════════════════════ -->
+<section id="nature">
+  <div class="section-title">
+    <h2>自然生態</h2>
+    <p class="en">Nature & Ecology</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="nature-banner">
+    <div class="big-stat">70%</div>
+    <p>香港土地面積中約70%為郊野和綠化地帶</p>
+  </div>
+
+  <div class="cards-grid" style="margin-top:2rem;">
+    <div class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#1a5c3a,#2eaa4a);">🏔️</div>
+      <div class="card-body">
+        <h3>龍脊 Dragon's Back</h3>
+        <p>被《時代雜誌》選為亞洲最佳市區遠足徑。從石澳道出發，沿山脊線行走，可飽覽石澳、大浪灣和南中國海的壯麗景色。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#3a5c5c,#4a8a8a);">🏞️</div>
+      <div class="card-body">
+        <h3>香港地質公園 Geopark</h3>
+        <p>聯合國教科文組織世界地質公園。西貢的六角形火山岩柱群是世界罕見的地質奇觀，形成於約1.4億年前的火山活動。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#4a5c1a,#8aaa2e);">🌊</div>
+      <div class="card-body">
+        <h3>大浪灣 Big Wave Bay</h3>
+        <p>被譽為香港最美海灘之一。四個海灣（西灣、鹹田灣、大灣、東灣）連綿不斷，水清沙幼，是遠足和露營的熱門地點。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#1a3a5c,#2e6eaa);">🐦</div>
+      <div class="card-body">
+        <h3>米埔自然保護區 Mai Po</h3>
+        <p>國際重要濕地（拉姆薩爾濕地）。每年冬季吸引超過60種、數以萬計的候鳥在此棲息，包括瀕危的黑臉琵鷺。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="nature-banner" style="margin-top:2rem;">
+    <h3 style="color:var(--neon-green);margin-bottom:0.5rem;">🌿 24個郊野公園</h3>
+    <p style="color:var(--text-muted);max-width:700px;margin:0 auto;">
+      香港擁有24個郊野公園和22個特別地區，佔全港土地面積約40%。
+      從城市中心出發，半小時內就能到達青山綠水，這是世界上極少數國際大都會能夠做到的。
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════ LANGUAGE ═══════════════════════ -->
+<section id="language">
+  <div class="section-title">
+    <h2>語言與文字</h2>
+    <p class="en">Language & Writing</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#4a1a2a,#aa2c5a);font-size:2.5rem;line-height:1.4;">
+        粵<br>語
+      </div>
+      <div class="card-body">
+        <h3>粵語（廣東話）Cantonese</h3>
+        <p>香港超過88%人口的日常用語。粵語保留了大量唐宋時期的中古漢語發音特徵，擁有九聲六調，被語言學家譽為「古漢語的活化石」。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#2a1a4a,#5a2eaa);font-size:2.5rem;line-height:1.4;">
+        繁<br>體
+      </div>
+      <div class="card-body">
+        <h3>繁體中文 Traditional Chinese</h3>
+        <p>香港使用繁體中文（正體字），保留了漢字的完整結構和文化內涵。街頭招牌、報章雜誌、政府公文均採用繁體字，是中華文化傳承的重要載體。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#1a2a4a,#2e5eaa);font-size:2.5rem;">
+        🇬🇧
+      </div>
+      <div class="card-body">
+        <h3>英文 English</h3>
+        <p>香港是亞洲英語普及率最高的城市之一。作為前英國殖民地，英語至今仍是政府和商界的正式語言。路牌、地鐵站名和法律文件全部中英雙語標示。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#3a1a1a,#8a2a2a);font-size:2.5rem;">
+        🔤
+      </div>
+      <div class="card-body">
+        <h3>港式用語 HK Slang</h3>
+        <p>香港獨特的中英夾雜語言現象——「唔該」、「OK啦」、「是但啦」——反映了香港文化的包容性。這些特有的語言習慣是香港人身分認同的一部分。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ CULTURAL SYMBOLS ═══════════════════════ -->
+<section id="symbols">
+  <div class="section-title">
+    <h2>文化符號</h2>
+    <p class="en">Cultural Symbols</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#cc0000,#ff2d55);">🌸</div>
+      <div class="card-body">
+        <h3>洋紫荊 Bauhinia</h3>
+        <p>香港市花，1880年在香港首次發現。五瓣紫紅色花朵出現在香港區旗、區徽和硬幣上，是香港最具代表性的植物符號。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#0066cc,#00d4ff);">🦁</div>
+      <div class="card-body">
+        <h3>獅子山 Lion Rock</h3>
+        <p>九龍半島的標誌性山峰，形似蹲伏的獅子。1970年代的電視劇《獅子山下》使其成為「香港精神」——刻苦耐勞、同舟共濟——的永恆象徵。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#cc6600,#ffe600);">🧧</div>
+      <div class="card-body">
+        <h3>紅白藍帆布袋</h3>
+        <p>紅白藍三色條紋的尼龍帆布袋是香港最具代表性的日常設計圖騰。從搬家到大排檔外賣，無處不在，更曾被國際時裝品牌引用為設計靈感。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#336633,#39ff14);">🎋</div>
+      <div class="card-body">
+        <h3>竹棚 Bamboo Scaffolding</h3>
+        <p>香港是世界上極少數仍在使用竹棚進行高層建築施工的城市。這種傳統技藝靈活、環保且抗震，是香港建築文化中一道獨特的風景線。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<footer>
+  <svg class="bauhinia-small" viewBox="0 0 100 100">
+    <g fill="#ff2d55" opacity="0.6">
+      <ellipse cx="50" cy="25" rx="8" ry="22"/>
+      <ellipse cx="50" cy="25" rx="8" ry="22" transform="rotate(72,50,50)"/>
+      <ellipse cx="50" cy="25" rx="8" ry="22" transform="rotate(144,50,50)"/>
+      <ellipse cx="50" cy="25" rx="8" ry="22" transform="rotate(216,50,50)"/>
+      <ellipse cx="50" cy="25" rx="8" ry="22" transform="rotate(288,50,50)"/>
+    </g>
+    <circle cx="50" cy="50" r="5" fill="#ffe600" opacity="0.6"/>
+  </svg>
+  <p style="font-family:'Noto Serif HK',serif;font-size:1.3rem;color:var(--neon-yellow);text-shadow:0 0 8px rgba(255,230,0,0.3);margin-bottom:0.5rem;">
+    香港 · 東方之珠
+  </p>
+  <p>Hong Kong — Pearl of the Orient</p>
+  <p style="margin-top:1rem;">東西交匯 · 古今並存 · 生生不息</p>
+</footer>
+
+</body>
+</html>
